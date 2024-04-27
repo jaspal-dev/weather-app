@@ -9,7 +9,8 @@
 			"extensions": [
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
-				"miguelsolorio.fluent-icons"
+				"miguelsolorio.fluent-icons",
+				"Postman.postman-for-vscode"
 			]
 		}
 	},
