@@ -1,0 +1,8 @@
+{
+    "editor.fontSize": 18,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.productIconTheme": "fluent-icons",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always",
+    },
+}

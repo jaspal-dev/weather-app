@@ -1,0 +1,17 @@
+{
+	"name": "Weather App",
+	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"miguelsolorio.fluent-icons"
+			]
+		}
+	},
+	"postCreateCommand": "npm install"
+}
