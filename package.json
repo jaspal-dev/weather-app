@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --fix **/*.js **/*.mjs",
+    "lint": "eslint --fix .",
     "prepare": "node .husky/install.mjs"
   },
   "keywords": [],
