@@ -40,12 +40,14 @@ export default [
     },
   },
   ...compat.extends('standard'),
-  Object.assign(pluginReactConfig, {
+  {
+    ...pluginReactConfig,
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
     settings: {
       react: {
         version: 'detect',
       },
     },
-  }),
+  },
   eslintPluginPrettierRecommended,
 ];
