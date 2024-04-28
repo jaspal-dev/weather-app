@@ -131,3 +131,6 @@ dist
 
 # package version lock file
 package-lock.json
+
+# Bundle files
+/dist
