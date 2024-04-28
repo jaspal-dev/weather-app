@@ -27,7 +27,7 @@
     "eslint-plugin-react": "7.34.1",
     "eslint-plugin-simple-import-sort": "12.1.0",
     "eslint-plugin-sort-keys": "2.3.5",
-    "eslint-plugin-spellcheck": "^0.0.20",
+    "eslint-plugin-spellcheck": "0.0.20",
     "globals": "15.0.0",
     "husky": "9.0.11",
     "lint-staged": "15.2.2",
