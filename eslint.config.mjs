@@ -40,6 +40,12 @@ export default [
     },
   },
   ...compat.extends('standard'),
-  pluginReactConfig,
+  Object.assign(pluginReactConfig, {
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  }),
   eslintPluginPrettierRecommended,
 ];
