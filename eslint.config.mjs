@@ -4,6 +4,7 @@ import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import sortKeys from 'eslint-plugin-sort-keys';
+import spellcheck from 'eslint-plugin-spellcheck';
 import globals from 'globals';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -50,4 +51,38 @@ export default [
     },
   },
   eslintPluginPrettierRecommended,
+  {
+    plugins: {
+      spellcheck,
+    },
+    rules: {
+      'spellcheck/spell-checker': [
+        1,
+        {
+          comments: true,
+          identifiers: true,
+          lang: 'en_US',
+          minLength: 3,
+          skipIfMatch: ['http://[^s]*', '^[-\\w]+/[-\\w\\.]+$'],
+          skipWordIfMatch: ['^foobar.*$'],
+          skipWords: [
+            'dict',
+            'aff',
+            'hunspellchecker',
+            'hunspell',
+            'utils',
+            'lang',
+            'compat',
+            'mjs',
+            'cjs',
+            'jsx',
+            'mjsx',
+            'globals',
+          ],
+          strings: true,
+          templates: true,
+        },
+      ],
+    },
+  },
 ];
