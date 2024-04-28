@@ -17,6 +17,9 @@ const compat = new FlatCompat({
 
 export default [
   { languageOptions: { globals: globals.browser } },
+  {
+    ignores: ['dist/**/*'],
+  },
   ...compat.extends('standard'),
   pluginReactConfig,
   eslintPluginPrettierRecommended,
