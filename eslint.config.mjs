@@ -42,7 +42,7 @@ export default [
   ...compat.extends('standard'),
   {
     ...pluginReactConfig,
-    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx}'],
     settings: {
       react: {
         version: 'detect',
