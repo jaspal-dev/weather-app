@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --fix .",
+    "lint": "eslint --fix '.'",
+    "prettier": "prettier '**/*.{js,ts,mjs,cjs,json}' --write",
     "prepare": "node .husky/install.mjs"
   },
   "keywords": [],
@@ -30,7 +31,7 @@
     "webpack-cli": "5.1.4"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   }
 }
