@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Weather } from './pages/weather';
+
 export default function App() {
-  return <h1>Hello World</h1>;
+  return <Weather a={'b'} text={'Some data'} />;
 }
