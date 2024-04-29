@@ -10,7 +10,8 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "miguelsolorio.fluent-icons",
-        "Postman.postman-for-vscode"
+        "Postman.postman-for-vscode",
+        "stylelint.vscode-stylelint"
       ]
     }
   },
