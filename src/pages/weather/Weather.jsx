@@ -50,11 +50,11 @@ const Weather = () => {
             <StyledSwitch defaultChecked sx={{ m: 1 }} />
           </Stack>
         </Stack>
-        <Stack direction={'row'}>
+        <Stack direction={'row'} flexWrap={'wrap'}>
           <StyledWeatherContent
             alignItems={'center'}
             component={Stack}
-            fixedWidth
+            flexGrow={1}
             justifyContent={'center'}
           >
             <Box textAlign={'center'}>
@@ -64,7 +64,7 @@ const Weather = () => {
           </StyledWeatherContent>
           <StyledWeatherContent
             alignItems={'center'}
-            flexGrow={1}
+            flexGrow={2}
             justifyContent={'center'}
             sx={{ border: '2px solid black' }}
           >

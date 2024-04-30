@@ -1,5 +1,4 @@
 import { Box, Paper, Stack, Switch } from '@mui/material';
-import { css } from '@mui/styled-engine';
 import { styled } from '@mui/system';
 
 export const StyledContainer = styled(Paper)`
@@ -13,18 +12,9 @@ export const StyledPage = styled(Box)`
   padding: 0.05px;
 `;
 
-export const getFixedWidthStyle = (props) =>
-  props.fixedWidth
-    ? css`
-        width: 400px;
-      `
-    : css``;
-
-export const StyledWeatherContent = styled(Stack, {
-  shouldForwardProp: (prop) => prop !== 'fixedWidth',
-})`
+export const StyledWeatherContent = styled(Stack)`
+  width: 400px;
   min-height: 400px;
-  ${getFixedWidthStyle};
 `;
 
 export const StyledCurrentWeatherInfo = styled(Box)`
