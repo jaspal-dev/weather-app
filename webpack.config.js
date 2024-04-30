@@ -6,6 +6,7 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
+    hot: true,
     port: 9000,
     static: {
       directory: path.join(__dirname, 'public'),

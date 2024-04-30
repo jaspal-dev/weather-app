@@ -35,6 +35,7 @@ export default [
     },
   },
   {
+    ignores: ['**/*.styled.{js,mjs,cjs,jsx,mjsx}'],
     plugins: {
       spellcheck,
     },
@@ -46,8 +47,8 @@ export default [
           identifiers: true,
           lang: 'en_US',
           minLength: 3,
-          skipIfMatch: ['http://[^s]*', '^[-\\w]+/[-\\w\\.]+$'],
-          skipWordIfMatch: ['^foobar.*$'],
+          // skipIfMatch: ['http://[^s]*', '^[-\\w]+/[-\\w\\.]+$'],
+          // skipWordIfMatch: ['^foobar.*$'],
           skipWords: [
             'dict',
             'aff',
