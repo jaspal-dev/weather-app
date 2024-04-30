@@ -1,3 +1,4 @@
+import { rules as emotionRules } from '@emotion/eslint-plugin';
 import { FlatCompat } from '@eslint/eslintrc';
 import pluginJs from '@eslint/js';
 import perfectionistAlphabetical from 'eslint-plugin-perfectionist/configs/recommended-alphabetical';
@@ -73,5 +74,17 @@ export default [
   perfectionistAlphabetical,
   perfectionistLineLength,
   perfectionistNatural,
+  {
+    plugins: {
+      '@emotion': {
+        rules: emotionRules,
+      },
+    },
+    rules: {
+      '@emotion/import-from-emotion': 'error',
+      '@emotion/styled-import': 'error',
+      '@emotion/syntax-preference': [2, 'string'],
+    },
+  },
   eslintPluginPrettierRecommended,
 ];
