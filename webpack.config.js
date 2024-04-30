@@ -1,3 +1,4 @@
+/* eslint-disable spellcheck/spell-checker */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -27,6 +28,27 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
+            plugins: [
+              [
+                '@emotion',
+                {
+                  importMap: {
+                    '@mui/material/styles': {
+                      styled: {
+                        canonicalImport: ['@emotion/styled', 'default'],
+                        styledBaseImport: ['@mui/material/styles', 'styled'],
+                      },
+                    },
+                    '@mui/system': {
+                      styled: {
+                        canonicalImport: ['@emotion/styled', 'default'],
+                        styledBaseImport: ['@mui/system', 'styled'],
+                      },
+                    },
+                  },
+                },
+              ],
+            ],
             presets: [
               ['@babel/preset-env', { targets: 'defaults' }],
               ['@babel/preset-react'],
