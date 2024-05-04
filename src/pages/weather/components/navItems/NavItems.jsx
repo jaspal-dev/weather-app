@@ -22,7 +22,7 @@ const NavItems = () => {
       <Box
         display={{ md: 'none', sm: 'flex', xs: 'none' }}
         flexGrow={1}
-        width={'100px'}
+        width={100}
       ></Box>
       <Stack alignItems={{ md: 'flex-end', xs: 'center' }}>
         <TextField
