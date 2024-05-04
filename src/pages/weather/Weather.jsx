@@ -4,12 +4,14 @@ import {
   Grid,
   IconButton,
   InputAdornment,
+  Paper,
   Stack,
   TextField,
   Typography,
 } from '@mui/material';
 import React from 'react';
 
+import useResponsive from '../../hooks/useResponsive';
 import {
   StyledContainer,
   StyledCurrentWeatherInfo,
@@ -17,106 +19,89 @@ import {
   StyledSwitch,
   StyledWeatherContent,
 } from './Weather.styled';
+import SearchReport from './components/searchReport';
 
 const Weather = () => {
+  const { downSM } = useResponsive();
   return (
     <StyledPage>
       <StyledContainer elevation={5}>
         <Stack
           alignItems={'center'}
-          direction={'row'}
+          direction={{ md: 'row', xs: 'column-reverse' }}
           justifyContent={'space-between'}
+          rowGap={2}
         >
-          <Box>
-            <Typography variant={'h2'}>London</Typography>
-            <Typography>Friday 16 July 10:28</Typography>
-          </Box>
-          <Stack alignItems={'center'} direction={'row'}>
-            <TextField
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton color="primary" edge="end">
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              hiddenLabel
-              placeholder="Search City"
-              size="small"
-              variant="outlined"
-            />
-            <StyledSwitch defaultChecked sx={{ m: 1 }} />
+          <SearchReport
+            searchResponse={{
+              searchCity: 'London',
+              searchDate: 'Friday 16 July 10:28',
+            }}
+          />
+          <Stack
+            alignItems={'center'}
+            flexDirection={'row'}
+            flexGrow={{ md: 'flex-end', xs: 'space-between' }}
+            justifyContent={{ md: 'flex-end', xs: 'space-between' }}
+            width={{ md: 'auto', xs: '100%' }}
+          >
+            <Box display={downSM ? 'none' : 'block'}></Box>
+            <Stack alignItems={{ md: 'flex-end', xs: 'center' }} flexGrow={1}>
+              <TextField
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton color="primary" edge="end">
+                        <SearchIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                hiddenLabel
+                placeholder="Search City"
+                size="small"
+                variant="outlined"
+              />
+            </Stack>
+            <Stack alignItems={'flex-end'}>
+              <StyledSwitch defaultChecked />
+            </Stack>
           </Stack>
         </Stack>
-        <Stack direction={'row'} flexWrap={'wrap'}>
-          <StyledWeatherContent
-            alignItems={'center'}
-            component={Stack}
-            flexGrow={1}
-            justifyContent={'center'}
-          >
-            <Box textAlign={'center'}>
-              <Typography variant={'h1'}>20 C</Typography>
-              <Typography>Sunny</Typography>
-            </Box>
-          </StyledWeatherContent>
-          <StyledWeatherContent
-            alignItems={'center'}
-            flexGrow={2}
-            justifyContent={'center'}
-            sx={{ border: '2px solid black' }}
-          >
-            <Box textAlign={'center'}>
-              <Typography>Forecast for today</Typography>
-              <StyledCurrentWeatherInfo>
-                <Grid container>
-                  <Grid item xs={3}>
-                    <div
-                      style={{ border: '2px solid red', height: '80px' }}
-                    ></div>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <div
-                      style={{ border: '2px solid red', height: '80px' }}
-                    ></div>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <div
-                      style={{ border: '2px solid red', height: '80px' }}
-                    ></div>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <div
-                      style={{ border: '2px solid red', height: '80px' }}
-                    ></div>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <div
-                      style={{ border: '2px solid red', height: '80px' }}
-                    ></div>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <div
-                      style={{ border: '2px solid red', height: '80px' }}
-                    ></div>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <div
-                      style={{ border: '2px solid red', height: '80px' }}
-                    ></div>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <div
-                      style={{ border: '2px solid red', height: '80px' }}
-                    ></div>
-                  </Grid>
-                </Grid>
-              </StyledCurrentWeatherInfo>
-            </Box>
-          </StyledWeatherContent>
-        </Stack>
+        <Grid container gap={3} mt={downSM ? 2 : 3}>
+          <Grid item xl={4} xs={12}>
+            <StyledWeatherContent
+              alignItems={'center'}
+              component={Paper}
+              elevation={5}
+              justifyContent={'center'}
+            >
+              <Box textAlign={'center'}>
+                <Typography variant={'h1'}>20 C</Typography>
+                <Typography>Sunny</Typography>
+              </Box>
+            </StyledWeatherContent>
+          </Grid>
+          <Grid item xl={8} xs={12}>
+            <StyledWeatherContent
+              alignItems={'center'}
+              component={Paper}
+              elevation={5}
+              justifyContent={'center'}
+            >
+              <Box textAlign={'center'}>
+                <Typography>Forecast for today</Typography>
+                <StyledCurrentWeatherInfo></StyledCurrentWeatherInfo>
+              </Box>
+            </StyledWeatherContent>
+          </Grid>
+          <Grid item xl xs={12}>
+            <StyledWeatherContent
+              component={Paper}
+              elevation={5}
+            ></StyledWeatherContent>
+          </Grid>
+        </Grid>
       </StyledContainer>
     </StyledPage>
   );

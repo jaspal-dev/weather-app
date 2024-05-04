@@ -20,14 +20,33 @@ const compat = new FlatCompat({
 });
 
 export default [
-  { languageOptions: { globals: globals.browser } },
+  ...compat.extends('standard'),
   {
     ignores: ['dist/**/*'],
   },
-  ...compat.extends('standard'),
+  {
+    rules: {
+      'no-unused-vars': [
+        'error',
+        {
+          args: 'after-used',
+          caughtErrors: 'all',
+          ignoreRestSiblings: false,
+          vars: 'all',
+        },
+      ],
+    },
+  },
+  {
+    languageOptions: { globals: globals.browser },
+  },
   {
     ...pluginReactConfig,
     files: ['**/*.{js,mjs,cjs,jsx,mjsx}'],
+    rules: {
+      ...pluginReactConfig.rules,
+      'react/require-default-props': [2],
+    },
     settings: {
       react: {
         version: 'detect',
@@ -65,6 +84,9 @@ export default [
             'compat',
             'Compat',
             'globals',
+            'Mui',
+            'Slabo',
+            'bool',
           ],
           strings: true,
           templates: true,
