@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-import { useResponsive } from '../../hooks/useResponsive/index';
+import { useResponsive } from '../../hooks/index';
 import {
   StyledContainer,
   StyledCurrentWeatherInfo,
@@ -45,8 +45,12 @@ const Weather = () => {
             justifyContent={{ md: 'flex-end', xs: 'space-between' }}
             width={{ md: 'auto', xs: '100%' }}
           >
-            <Box display={downSM ? 'none' : 'block'}></Box>
-            <Stack alignItems={{ md: 'flex-end', xs: 'center' }} flexGrow={1}>
+            <Box
+              display={{ md: 'none', sm: 'flex', xs: 'none' }}
+              flexGrow={1}
+              width={'100px'}
+            ></Box>
+            <Stack alignItems={{ md: 'flex-end', xs: 'center' }}>
               <TextField
                 InputProps={{
                   endAdornment: (
@@ -63,7 +67,7 @@ const Weather = () => {
                 variant="outlined"
               />
             </Stack>
-            <Stack alignItems={'flex-end'}>
+            <Stack alignItems={'flex-end'} flexGrow={1} width={'100px'}>
               <StyledSwitch defaultChecked />
             </Stack>
           </Stack>
