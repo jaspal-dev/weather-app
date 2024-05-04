@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const SearchReport = ({
-  isLoading,
-  searchResponse: { searchCity, searchDate },
+  isLoading = false,
+  searchResponse: { searchCity = '', searchDate = '' },
 }) => {
   return isLoading ? (
     <Box></Box>
   ) : (
-    <Box>
+    <Box textAlign={{ md: 'left', xs: 'center' }}>
       <Typography fontWeight={500} variant={'h2'}>
         {searchCity}
       </Typography>
@@ -24,14 +24,6 @@ SearchReport.propTypes = {
     searchCity: PropTypes.string,
     searchDate: PropTypes.string,
   }),
-};
-
-SearchReport.defaultProps = {
-  isLoading: false,
-  searchResponse: {
-    searchCity: '',
-    searchDate: '',
-  },
 };
 
 export { SearchReport };
