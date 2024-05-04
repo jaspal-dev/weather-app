@@ -22,7 +22,7 @@ const NavItems = () => {
       <Box
         display={{ md: 'none', sm: 'flex', xs: 'none' }}
         flexGrow={1}
-        width={'100px'}
+        width={100}
       ></Box>
       <Stack alignItems={{ md: 'flex-end', xs: 'center' }}>
         <TextField
@@ -41,7 +41,7 @@ const NavItems = () => {
           variant="outlined"
         />
       </Stack>
-      <Stack alignItems={'flex-end'} flexGrow={1} width={'100px'}>
+      <Stack alignItems={'flex-end'} flexGrow={1} width={100}>
         <StyledSwitch defaultChecked />
       </Stack>
     </Stack>

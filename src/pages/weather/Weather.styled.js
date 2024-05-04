@@ -31,7 +31,3 @@ export const StyledPage = styled(Box)`
 export const StyledWeatherContent = styled(Stack)`
   min-height: 400px;
 `;
-
-export const StyledCurrentWeatherInfo = styled(Box)`
-  width: 300px;
-`;
