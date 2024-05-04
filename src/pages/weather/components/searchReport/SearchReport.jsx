@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Skeleton, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -6,14 +6,18 @@ const SearchReport = ({
   isLoading = false,
   searchResponse: { searchCity = '', searchDate = '' },
 }) => {
-  return isLoading ? (
-    <Box></Box>
-  ) : (
+  return (
     <Box textAlign={{ md: 'left', xs: 'center' }}>
       <Typography fontWeight={500} variant={'h2'}>
-        {searchCity}
+        {isLoading ? <Skeleton width={200} /> : searchCity}
       </Typography>
-      <Typography>{searchDate}</Typography>
+      <Typography>
+        {isLoading ? (
+          <Skeleton sx={{ align: 'center', marginX: 'auto' }} width={170} />
+        ) : (
+          searchDate
+        )}
+      </Typography>
     </Box>
   );
 };

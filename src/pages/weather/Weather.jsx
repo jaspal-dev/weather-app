@@ -1,14 +1,4 @@
-import SearchIcon from '@mui/icons-material/Search';
-import {
-  Box,
-  Grid,
-  IconButton,
-  InputAdornment,
-  Paper,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
 import React from 'react';
 
 import { useResponsive } from '../../hooks/index';
@@ -16,10 +6,11 @@ import {
   StyledContainer,
   StyledCurrentWeatherInfo,
   StyledPage,
-  StyledSwitch,
   StyledWeatherContent,
 } from './Weather.styled';
-import SearchReport from './components/searchReport';
+import CurrentWeather from './components/currentWeather/index';
+import NavItems from './components/navItems/index';
+import SearchReport from './components/searchReport/index';
 
 const Weather = () => {
   const { downSM } = useResponsive();
@@ -35,56 +26,14 @@ const Weather = () => {
           <SearchReport
             searchResponse={{
               searchCity: 'London',
-              searchDate: 'Friday 16 July 10:28',
+              searchDate: 'Friday 16 July 10:27',
             }}
           />
-          <Stack
-            alignItems={'center'}
-            flexDirection={'row'}
-            flexGrow={{ md: 'flex-end', xs: 'space-between' }}
-            justifyContent={{ md: 'flex-end', xs: 'space-between' }}
-            width={{ md: 'auto', xs: '100%' }}
-          >
-            <Box
-              display={{ md: 'none', sm: 'flex', xs: 'none' }}
-              flexGrow={1}
-              width={'100px'}
-            ></Box>
-            <Stack alignItems={{ md: 'flex-end', xs: 'center' }}>
-              <TextField
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton color="primary" edge="end">
-                        <SearchIcon />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                hiddenLabel
-                placeholder="Search City"
-                size="small"
-                variant="outlined"
-              />
-            </Stack>
-            <Stack alignItems={'flex-end'} flexGrow={1} width={'100px'}>
-              <StyledSwitch defaultChecked />
-            </Stack>
-          </Stack>
+          <NavItems />
         </Stack>
-        <Grid container gap={3} mt={downSM ? 2 : 3}>
+        <Grid container mt={0} spacing={downSM ? 2 : 3}>
           <Grid item xl={4} xs={12}>
-            <StyledWeatherContent
-              alignItems={'center'}
-              component={Paper}
-              elevation={5}
-              justifyContent={'center'}
-            >
-              <Box textAlign={'center'}>
-                <Typography variant={'h1'}>20 C</Typography>
-                <Typography>Sunny</Typography>
-              </Box>
-            </StyledWeatherContent>
+            <CurrentWeather />
           </Grid>
           <Grid item xl={8} xs={12}>
             <StyledWeatherContent
