@@ -1,16 +1,17 @@
-import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
+import { Grid, Paper, Stack } from '@mui/material';
 import React from 'react';
 
 import { useResponsive } from '../../hooks/index';
 import {
   StyledContainer,
-  StyledCurrentWeatherInfo,
   StyledPage,
   StyledWeatherContent,
 } from './Weather.styled';
 import CurrentWeather from './components/currentWeather/index';
 import NavItems from './components/navItems/index';
 import SearchReport from './components/searchReport/index';
+import TodayForecasts from './components/todayForecasts';
+import { contents } from './contents';
 
 const Weather = () => {
   const { downSM } = useResponsive();
@@ -25,8 +26,8 @@ const Weather = () => {
         >
           <SearchReport
             searchResponse={{
-              searchCity: 'London',
-              searchDate: 'Friday 16 July 10:27',
+              searchCity: contents.searchedCity,
+              searchDate: contents.searchedDate,
             }}
           />
           <NavItems />
@@ -36,17 +37,7 @@ const Weather = () => {
             <CurrentWeather />
           </Grid>
           <Grid item xl={8} xs={12}>
-            <StyledWeatherContent
-              alignItems={'center'}
-              component={Paper}
-              elevation={5}
-              justifyContent={'center'}
-            >
-              <Box textAlign={'center'}>
-                <Typography>Forecast for today</Typography>
-                <StyledCurrentWeatherInfo></StyledCurrentWeatherInfo>
-              </Box>
-            </StyledWeatherContent>
+            <TodayForecasts />
           </Grid>
           <Grid item xl xs={12}>
             <StyledWeatherContent

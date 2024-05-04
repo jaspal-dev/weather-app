@@ -41,7 +41,7 @@ const NavItems = () => {
           variant="outlined"
         />
       </Stack>
-      <Stack alignItems={'flex-end'} flexGrow={1} width={'100px'}>
+      <Stack alignItems={'flex-end'} flexGrow={1} width={100}>
         <StyledSwitch defaultChecked />
       </Stack>
     </Stack>

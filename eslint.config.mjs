@@ -83,6 +83,7 @@ export default [
             'Mui',
             'Slabo',
             'bool',
+            'axios',
           ],
           strings: true,
           templates: true,
