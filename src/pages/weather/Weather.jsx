@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-import useResponsive from '../../hooks/useResponsive';
+import { useResponsive } from '../../hooks/useResponsive/index';
 import {
   StyledContainer,
   StyledCurrentWeatherInfo,

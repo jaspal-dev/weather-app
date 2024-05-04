@@ -43,10 +43,6 @@ export default [
   {
     ...pluginReactConfig,
     files: ['**/*.{js,mjs,cjs,jsx,mjsx}'],
-    rules: {
-      ...pluginReactConfig.rules,
-      'react/require-default-props': [2],
-    },
     settings: {
       react: {
         version: 'detect',
