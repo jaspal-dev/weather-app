@@ -1,4 +1,5 @@
 export { default as CurrentWeather } from './currentWeather';
+export { default as HelperContent } from './helperContent';
 export { default as MenuBar } from './menuBar';
 export { default as NavItems } from './navItems';
 export { default as SearchReport } from './searchReport';

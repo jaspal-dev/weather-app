@@ -6,11 +6,13 @@ import {
   Stack,
   TextField,
 } from '@mui/material';
-import React from 'react';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
 import { StyledSwitch } from './NavItems.styled';
 
-const NavItems = () => {
+const NavItems = ({ setCity }) => {
+  const [cityName, setCityName] = useState('');
   return (
     <Stack
       alignItems={'center'}
@@ -29,15 +31,22 @@ const NavItems = () => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton color="primary" edge="end">
+                <IconButton
+                  color="primary"
+                  edge="end"
+                  onClick={() => setCity(cityName)}
+                >
                   <SearchIcon />
                 </IconButton>
               </InputAdornment>
             ),
           }}
+          autoComplete="off"
           hiddenLabel
+          onChange={(e) => setCityName(e.target.value)}
           placeholder="Search City"
           size="small"
+          value={cityName}
           variant="outlined"
         />
       </Stack>
@@ -46,6 +55,10 @@ const NavItems = () => {
       </Stack>
     </Stack>
   );
+};
+
+NavItems.propTypes = {
+  setCity: PropTypes.func,
 };
 
 export { NavItems };

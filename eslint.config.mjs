@@ -84,6 +84,7 @@ export default [
             'Slabo',
             'bool',
             'axios',
+            'func',
           ],
           strings: true,
           templates: true,
