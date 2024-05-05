@@ -1,36 +1,43 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const useAsync = (callbackFn, dependencies) => {
-  const [callbackInfo, setCallbackInfo] = useState({
+import { constants } from './../constants';
+const { LOADING_STATUS } = constants;
+
+const useAsync = (callbackFn, dependencies, immediateInvoke = false) => {
+  const [callbackFnInfo, setCallbackFnInfo] = useState({
     error: null,
-    isLoading: true,
     response: null,
+    status: LOADING_STATUS.NOT_STARTED,
   });
   const memorizedCallbackFn = useCallback(async () => {
     try {
+      setCallbackFnInfo((callbackFnInfo) => ({
+        ...callbackFnInfo,
+        status: LOADING_STATUS.LOADING,
+      }));
       const response = await callbackFn();
-      setCallbackInfo((callbackInfo) => ({
-        ...callbackInfo,
+      setCallbackFnInfo((callbackFnInfo) => ({
+        ...callbackFnInfo,
         response,
       }));
     } catch (error) {
-      setCallbackInfo((callbackInfo) => ({
-        ...callbackInfo,
+      setCallbackFnInfo((callbackFnInfo) => ({
+        ...callbackFnInfo,
         error,
       }));
     } finally {
-      setCallbackInfo((callbackInfo) => ({
-        ...callbackInfo,
-        isLoading: false,
+      setCallbackFnInfo((callbackFnInfo) => ({
+        ...callbackFnInfo,
+        status: LOADING_STATUS.FINISHED,
       }));
     }
   }, dependencies);
 
   useEffect(() => {
-    memorizedCallbackFn();
-  }, [memorizedCallbackFn]);
+    if (immediateInvoke) memorizedCallbackFn();
+  }, [memorizedCallbackFn, immediateInvoke]);
 
-  return callbackInfo;
+  return { callbackFnInfo, invoke: memorizedCallbackFn };
 };
 
 export default useAsync;

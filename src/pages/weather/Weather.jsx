@@ -1,51 +1,19 @@
-import { Grid, Paper, Stack } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 
-import { useResponsive } from '../../hooks/index';
-import {
-  StyledContainer,
-  StyledPage,
-  StyledWeatherContent,
-} from './Weather.styled';
-import CurrentWeather from './components/currentWeather/index';
-import NavItems from './components/navItems/index';
-import SearchReport from './components/searchReport/index';
-import TodayForecasts from './components/todayForecasts';
-import { contents } from './contents';
+import { useAsync } from '../../hooks/index';
+import { getWeatherInfo } from './../../api/weather/index';
+import { StyledContainer, StyledPage } from './Weather.styled';
+import { MenuBar, WeatherContent } from './components/index';
 
 const Weather = () => {
-  const { downSM } = useResponsive();
+  const [city] = useState(undefined);
+  // eslint-disable-next-line no-unused-vars
+  const { callbackFnInfo, invoke } = useAsync(getWeatherInfo, [city]);
   return (
     <StyledPage>
       <StyledContainer elevation={5}>
-        <Stack
-          alignItems={'center'}
-          direction={{ md: 'row', xs: 'column-reverse' }}
-          justifyContent={'space-between'}
-          rowGap={2}
-        >
-          <SearchReport
-            searchResponse={{
-              searchCity: contents.searchedCity,
-              searchDate: contents.searchedDate,
-            }}
-          />
-          <NavItems />
-        </Stack>
-        <Grid container mt={0} spacing={downSM ? 2 : 3}>
-          <Grid item xl={4} xs={12}>
-            <CurrentWeather />
-          </Grid>
-          <Grid item xl={8} xs={12}>
-            <TodayForecasts />
-          </Grid>
-          <Grid item xl xs={12}>
-            <StyledWeatherContent
-              component={Paper}
-              elevation={5}
-            ></StyledWeatherContent>
-          </Grid>
-        </Grid>
+        <MenuBar />
+        <WeatherContent />
       </StyledContainer>
     </StyledPage>
   );
