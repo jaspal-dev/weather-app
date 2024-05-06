@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
+import { contents } from '../../contents';
 import { StyledSwitch } from './NavItems.styled';
 
 const NavItems = ({ setCity }) => {
@@ -44,7 +45,7 @@ const NavItems = ({ setCity }) => {
           autoComplete="off"
           hiddenLabel
           onChange={(e) => setCityName(e.target.value)}
-          placeholder="Search City"
+          placeholder={contents.cityPlaceholder}
           size="small"
           value={cityName}
           variant="outlined"
