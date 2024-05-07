@@ -2,31 +2,37 @@ import { Stack } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { contents } from './../../contents';
 import NavItems from './../navItems/index';
 import SearchReport from './../searchReport/index';
 
-const MenuBar = ({ city, setCity }) => {
+const MenuBar = ({ invokeWeatherData, searchInfo, status }) => {
   return (
     <Stack
       alignItems={'center'}
       direction={{ md: 'row', xs: 'column-reverse' }}
-      justifyContent={city ? 'space-between' : 'end'}
+      justifyContent={searchInfo.city ? 'space-between' : 'end'}
       rowGap={2}
     >
-      {city && (
+      {searchInfo.city && (
         <SearchReport
           searchResponse={{
-            searchCity: contents.searchedCity,
-            searchDate: contents.searchedDate,
+            searchCity: searchInfo.city,
+            searchDate: searchInfo.lastUpdatedAt,
           }}
         />
       )}
-      <NavItems setCity={setCity} />
+      <NavItems invokeWeatherData={invokeWeatherData} status={status} />
     </Stack>
   );
 };
 
-MenuBar.propTypes = { city: PropTypes.string, setCity: PropTypes.func };
+MenuBar.propTypes = {
+  invokeWeatherData: PropTypes.func,
+  searchInfo: PropTypes.shape({
+    city: PropTypes.string,
+    lastUpdatedAt: PropTypes.string,
+  }),
+  status: PropTypes.string,
+};
 
 export { MenuBar };

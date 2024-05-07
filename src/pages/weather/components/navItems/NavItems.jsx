@@ -9,11 +9,17 @@ import {
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
+import { constants } from '../../../../constants';
 import { contents } from '../../contents';
 import { StyledSwitch } from './NavItems.styled';
 
-const NavItems = ({ setCity }) => {
+const NavItems = ({ invokeWeatherData, status }) => {
   const [cityName, setCityName] = useState('');
+  const fetchWeatherData = (event) => {
+    event.preventDefault();
+    invokeWeatherData({ cityName });
+    setCityName('');
+  };
   return (
     <Stack
       alignItems={'center'}
@@ -27,15 +33,22 @@ const NavItems = ({ setCity }) => {
         flexGrow={1}
         width={100}
       ></Box>
-      <Stack alignItems={{ md: 'flex-end', xs: 'center' }}>
+      <Stack
+        alignItems={{ md: 'flex-end', xs: 'center' }}
+        component={'form'}
+        onSubmit={fetchWeatherData}
+      >
         <TextField
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
                   color="primary"
+                  disabled={
+                    status === constants.LOADING_STATUS.LOADING || !cityName
+                  }
                   edge="end"
-                  onClick={() => setCity(cityName)}
+                  type="submit"
                 >
                   <SearchIcon />
                 </IconButton>
@@ -59,7 +72,8 @@ const NavItems = ({ setCity }) => {
 };
 
 NavItems.propTypes = {
-  setCity: PropTypes.func,
+  invokeWeatherData: PropTypes.func,
+  status: PropTypes.string,
 };
 
 export { NavItems };
