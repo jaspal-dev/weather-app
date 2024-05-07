@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { constants } from './../constants';
+
 const { LOADING_STATUS } = constants;
 
 const useAsync = (callbackFn, dependencies, immediateInvoke = false) => {
