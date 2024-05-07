@@ -30,6 +30,7 @@ export default [
         'error',
         { considerComments: true, count: 1, exactCount: true },
       ],
+      'no-console': ['error'],
       'no-unused-vars': [
         'error',
         {

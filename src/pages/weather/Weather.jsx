@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useAsync } from '../../hooks/index';
 import { getWeatherInfo } from './../../api/weather/index';
@@ -7,14 +7,33 @@ import { HelperContent, MenuBar, WeatherContent } from './components/index';
 import { contents } from './contents';
 
 const Weather = () => {
-  const [city, setCity] = useState(undefined);
-  // eslint-disable-next-line no-unused-vars
-  const { callbackFnInfo, invoke } = useAsync(getWeatherInfo, [city]);
+  const [searchInfo, setSearchInfo] = useState({
+    city: undefined,
+    lastUpdatedAt: undefined,
+  });
+  const { callbackFnInfo, invoke: invokeWeatherData } = useAsync(
+    getWeatherInfo,
+    [],
+    {
+      immediateInvoke: false,
+    }
+  );
+  useEffect(() => {
+    if (callbackFnInfo?.response) {
+      setSearchInfo({
+        city: callbackFnInfo.response?.data.location.name,
+        lastUpdatedAt: callbackFnInfo.response?.data?.current?.last_updated,
+      });
+    }
+  }, [callbackFnInfo]);
   return (
     <StyledPage>
       <StyledContainer elevation={5}>
-        <MenuBar city={city} setCity={setCity} />
-        {city ? (
+        <MenuBar
+          invokeWeatherData={invokeWeatherData}
+          searchInfo={searchInfo}
+        />
+        {searchInfo.city ? (
           <WeatherContent />
         ) : (
           <HelperContent

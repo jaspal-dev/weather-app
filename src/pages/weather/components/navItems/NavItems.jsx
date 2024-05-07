@@ -12,8 +12,11 @@ import React, { useState } from 'react';
 import { contents } from '../../contents';
 import { StyledSwitch } from './NavItems.styled';
 
-const NavItems = ({ setCity }) => {
+const NavItems = ({ invokeWeatherData }) => {
   const [cityName, setCityName] = useState('');
+  const fetchWeatherData = () => {
+    if (cityName) invokeWeatherData({ cityName });
+  };
   return (
     <Stack
       alignItems={'center'}
@@ -35,7 +38,7 @@ const NavItems = ({ setCity }) => {
                 <IconButton
                   color="primary"
                   edge="end"
-                  onClick={() => setCity(cityName)}
+                  onClick={() => fetchWeatherData({ cityName })}
                 >
                   <SearchIcon />
                 </IconButton>
@@ -59,7 +62,7 @@ const NavItems = ({ setCity }) => {
 };
 
 NavItems.propTypes = {
-  setCity: PropTypes.func,
+  invokeWeatherData: PropTypes.func,
 };
 
 export { NavItems };
