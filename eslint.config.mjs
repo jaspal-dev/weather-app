@@ -26,6 +26,10 @@ export default [
   },
   {
     rules: {
+      'import/newline-after-import': [
+        'error',
+        { considerComments: true, count: 1, exactCount: true },
+      ],
       'no-unused-vars': [
         'error',
         {
