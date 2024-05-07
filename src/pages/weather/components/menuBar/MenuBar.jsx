@@ -5,7 +5,7 @@ import React from 'react';
 import NavItems from './../navItems/index';
 import SearchReport from './../searchReport/index';
 
-const MenuBar = ({ invokeWeatherData, searchInfo }) => {
+const MenuBar = ({ invokeWeatherData, searchInfo, status }) => {
   return (
     <Stack
       alignItems={'center'}
@@ -21,7 +21,7 @@ const MenuBar = ({ invokeWeatherData, searchInfo }) => {
           }}
         />
       )}
-      <NavItems invokeWeatherData={invokeWeatherData} />
+      <NavItems invokeWeatherData={invokeWeatherData} status={status} />
     </Stack>
   );
 };
@@ -32,6 +32,7 @@ MenuBar.propTypes = {
     city: PropTypes.string,
     lastUpdatedAt: PropTypes.string,
   }),
+  status: PropTypes.string,
 };
 
 export { MenuBar };

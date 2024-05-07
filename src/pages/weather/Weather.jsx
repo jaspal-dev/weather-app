@@ -32,6 +32,7 @@ const Weather = () => {
         <MenuBar
           invokeWeatherData={invokeWeatherData}
           searchInfo={searchInfo}
+          status={callbackFnInfo.status}
         />
         {searchInfo.city ? (
           <WeatherContent />
