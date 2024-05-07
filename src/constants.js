@@ -1,7 +1,7 @@
 export const constants = {
   LOADING_STATUS: {
     FINISHED: 'FINISHED',
+    IDLE: 'IDLE',
     LOADING: 'LOADING',
-    NOT_STARTED: 'NOT_STARTED',
   },
 };

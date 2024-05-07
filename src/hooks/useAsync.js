@@ -8,7 +8,7 @@ const useAsync = (callbackFn, dependencies, immediateInvoke = false) => {
   const [callbackFnInfo, setCallbackFnInfo] = useState({
     error: null,
     response: null,
-    status: LOADING_STATUS.NOT_STARTED,
+    status: LOADING_STATUS.IDLE,
   });
   const memorizedCallbackFn = useCallback(async () => {
     try {
