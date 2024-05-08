@@ -1,11 +1,24 @@
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { createContext, useState } from 'react';
 
-import { theme } from './theme';
+import { constants } from './../constants';
+import { generateTheme } from './generateTheme';
+
+export const ThemeContext = createContext(null);
 
 const ThemeProvider = ({ children }) => {
-  return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
+  const previousSelectedMode = localStorage.getItem('mode');
+  const [mode, setMode] = useState(
+    previousSelectedMode ?? constants.mode.LIGHT
+  );
+  return (
+    <ThemeContext.Provider value={[mode, setMode]}>
+      <MuiThemeProvider theme={generateTheme(mode)}>
+        {children}
+      </MuiThemeProvider>
+    </ThemeContext.Provider>
+  );
 };
 
 ThemeProvider.propTypes = {
