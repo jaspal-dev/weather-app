@@ -35,7 +35,7 @@ const Weather = () => {
           status={callbackFnInfo.status}
         />
         {searchInfo.city ? (
-          <WeatherContent />
+          <WeatherContent status={callbackFnInfo.status} />
         ) : (
           <HelperContent
             description={contents.searchHelp}

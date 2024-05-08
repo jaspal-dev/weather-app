@@ -2,6 +2,7 @@ import { Stack } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { constants } from './../../../../constants';
 import NavItems from './../navItems/index';
 import SearchReport from './../searchReport/index';
 
@@ -15,6 +16,7 @@ const MenuBar = ({ invokeWeatherData, searchInfo, status }) => {
     >
       {searchInfo.city && (
         <SearchReport
+          isLoading={status === constants.LOADING_STATUS.LOADING}
           searchResponse={{
             searchCity: searchInfo.city,
             searchDate: searchInfo.lastUpdatedAt,
