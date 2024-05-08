@@ -23,7 +23,7 @@ export const StyledContainer = styled(Paper)`
 `;
 
 export const StyledPage = styled(Box)`
-  background-color: #fefae0;
+  background-color: ${({ theme }) => theme.palette.casual.main};
   min-height: 100vh;
   padding: 0.05px;
 `;

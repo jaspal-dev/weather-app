@@ -7,18 +7,27 @@ import {
   TextField,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
-import { constants } from '../../../../constants';
+import { constants, keysConstants } from '../../../../constants';
+import { ThemeContext } from '../../../../themes';
 import { contents } from '../../contents';
 import { StyledSwitch } from './NavItems.styled';
 
 const NavItems = ({ invokeWeatherData, status }) => {
   const [cityName, setCityName] = useState('');
+  const [mode, setMode] = useContext(ThemeContext);
   const fetchWeatherData = (event) => {
     event.preventDefault();
     invokeWeatherData({ cityName });
     setCityName('');
+  };
+  const handleModeChange = (event) => {
+    const newMode = event.target.checked
+      ? constants.mode.DARK
+      : constants.mode.LIGHT;
+    setMode(newMode);
+    localStorage.setItem(keysConstants.mode, newMode);
   };
   return (
     <Stack
@@ -65,7 +74,7 @@ const NavItems = ({ invokeWeatherData, status }) => {
         />
       </Stack>
       <Stack alignItems={'flex-end'} flexGrow={1} width={100}>
-        <StyledSwitch defaultChecked />
+        <StyledSwitch checked={mode === 'dark'} onChange={handleModeChange} />
       </Stack>
     </Stack>
   );
