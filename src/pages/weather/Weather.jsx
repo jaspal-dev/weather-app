@@ -4,7 +4,6 @@ import { useAsync } from '../../hooks/index';
 import { getWeatherInfo } from './../../api/weather/index';
 import { StyledContainer, StyledPage } from './Weather.styled';
 import { HelperContent, MenuBar, WeatherContent } from './components/index';
-import { contents } from './contents';
 
 const Weather = () => {
   const [searchInfo, setSearchInfo] = useState({
@@ -24,6 +23,8 @@ const Weather = () => {
         city: callbackFnInfo.response?.data.location.name,
         lastUpdatedAt: callbackFnInfo.response?.data?.current?.last_updated,
       });
+    } else if (callbackFnInfo?.error) {
+      setSearchInfo({});
     }
   }, [callbackFnInfo]);
   return (
@@ -37,10 +38,7 @@ const Weather = () => {
         {searchInfo.city ? (
           <WeatherContent status={callbackFnInfo.status} />
         ) : (
-          <HelperContent
-            description={contents.searchHelp}
-            heading={contents.startSearching}
-          />
+          <HelperContent callbackFnInfo={callbackFnInfo} />
         )}
       </StyledContainer>
     </StyledPage>
