@@ -14,3 +14,5 @@ export const constants = {
     LIGHT: 'light',
   },
 };
+
+export const LOCATION_NOT_FOUND_ERROR_CODE = 1006;
