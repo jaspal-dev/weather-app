@@ -16,3 +16,9 @@ export const constants = {
 };
 
 export const LOCATION_NOT_FOUND_ERROR_CODE = 1006;
+
+export const WeatherAPI = {
+  ALERTS: 'no',
+  AQI: 'no',
+  WEATHER_PREDICATION_DAYS: 10,
+};
