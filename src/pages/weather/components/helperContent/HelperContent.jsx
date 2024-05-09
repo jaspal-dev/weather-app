@@ -4,16 +4,29 @@ import React from 'react';
 import Lottie from 'react-lottie';
 
 import * as loadingAnimation from './../../../../assets/animations/LoadingAnimation.json';
-import { constants } from './../../../../constants';
+import {
+  LOCATION_NOT_FOUND_ERROR_CODE,
+  constants,
+} from './../../../../constants';
 import { contents } from './../../contents';
 
 const { LOADING_STATUS } = constants;
 
-const GenerateHelperContent = ({ isError }) => {
+const GenerateHelperContent = ({ error, isError }) => {
+  const isLocationNotFound =
+    error?.response?.data?.error?.code === LOCATION_NOT_FOUND_ERROR_CODE;
   return isError ? (
     <Box>
-      <Typography variant={'h4'}>{contents.errorHeadingText}</Typography>
-      <Typography variant={'h6'}>{contents.errorHeadingDescription}</Typography>
+      <Typography variant={'h4'}>
+        {isLocationNotFound
+          ? contents.locationNotFoundText
+          : contents.errorHeadingText}
+      </Typography>
+      <Typography variant={'h6'}>
+        {isLocationNotFound
+          ? contents.locationNotFoundDescription
+          : contents.errorHeadingDescription}
+      </Typography>
     </Box>
   ) : (
     <Box>
@@ -36,14 +49,18 @@ const HelperContent = ({ callbackFnInfo }) => {
           <Lottie options={{ animationData: loadingAnimation }} />
         </Box>
       ) : (
-        <GenerateHelperContent isError={callbackFnInfo.error !== null} />
+        <GenerateHelperContent
+          error={callbackFnInfo.error}
+          isError={callbackFnInfo.error !== null}
+        />
       )}
     </Stack>
   );
 };
 
 GenerateHelperContent.propTypes = {
-  isError: PropTypes.bool,
+  error: PropTypes.object,
+  isError: PropTypes.bool.isRequired,
 };
 
 HelperContent.propTypes = {

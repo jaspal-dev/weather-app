@@ -17,5 +17,5 @@
   },
   "postCreateCommand": "bash ${containerWorkspaceFolder}/.devcontainer/init.sh",
   "remoteUser": "root",
-  "forwardPorts": [3000]
+  "forwardPorts": [9000]
 }
