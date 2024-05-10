@@ -1,7 +1,7 @@
-import { Box, Paper, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { styled } from '@mui/system';
 
-export const StyledContainer = styled(Paper)`
+export const StyledContainer = styled(Box)`
   ${(props) => props.theme.breakpoints.down('sm')} {
     padding: 35px 20px;
     margin: 0;

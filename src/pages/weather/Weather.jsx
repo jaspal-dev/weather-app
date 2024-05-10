@@ -1,7 +1,9 @@
+import { Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
-import { useAsync } from '../../hooks/index';
+import { useAsync, useResponsive } from '../../hooks/index';
 import { getWeatherInfo } from './../../api/weather/index';
+import { FULL_VIEWING_HEIGHT } from './../../constants';
 import { StyledContainer, StyledPage } from './Weather.styled';
 import { HelperContent, MenuBar, WeatherContent } from './components/index';
 
@@ -10,6 +12,7 @@ const Weather = () => {
     city: undefined,
     lastUpdatedAt: undefined,
   });
+  const { downMD } = useResponsive();
   const { callbackFnInfo, invoke: invokeWeatherData } = useAsync(
     getWeatherInfo,
     [],
@@ -29,14 +32,17 @@ const Weather = () => {
   }, [callbackFnInfo]);
   return (
     <StyledPage>
-      <StyledContainer elevation={5}>
+      <StyledContainer
+        component={Box}
+        sx={{ minHeight: downMD ? FULL_VIEWING_HEIGHT : undefined }}
+      >
         <MenuBar
           invokeWeatherData={invokeWeatherData}
           searchInfo={searchInfo}
           status={callbackFnInfo.status}
         />
         {searchInfo.city ? (
-          <WeatherContent status={callbackFnInfo.status} />
+          <WeatherContent callbackFnInfo={callbackFnInfo} />
         ) : (
           <HelperContent callbackFnInfo={callbackFnInfo} />
         )}
