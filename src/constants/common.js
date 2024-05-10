@@ -22,3 +22,8 @@ export const WeatherAPI = {
   AQI: 'no',
   WEATHER_PREDICATION_DAYS: 10,
 };
+
+// eslint-disable-next-line spellcheck/spell-checker
+export const FULL_VIEWING_HEIGHT = '100vh';
+
+export const LAST_UPDATED_AT_MESSAGE = 'Updated';

@@ -1,4 +1,4 @@
-import { Grid, Paper } from '@mui/material';
+import { Grid } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -9,32 +9,29 @@ import { StyledWeatherContent } from './../../Weather.styled';
 import CurrentWeather from './../currentWeather/index';
 import TodayForecasts from './../todayForecasts/index';
 
-const WeatherContent = ({ status }) => {
+const WeatherContent = ({ callbackFnInfo }) => {
   const { downSM } = useResponsive();
   return (
     <Grid container mt={0} spacing={downSM ? 2 : 3}>
       <Grid item xl={4} xs={12}>
         <SkeletonWrapper
-          isLoading={constants.LOADING_STATUS.LOADING === status}
+          isLoading={constants.LOADING_STATUS.LOADING === callbackFnInfo.status}
         >
-          <CurrentWeather />
+          <CurrentWeather response={callbackFnInfo.response} />
         </SkeletonWrapper>
       </Grid>
       <Grid item xl={8} xs={12}>
         <SkeletonWrapper
-          isLoading={constants.LOADING_STATUS.LOADING === status}
+          isLoading={constants.LOADING_STATUS.LOADING === callbackFnInfo.status}
         >
           <TodayForecasts />
         </SkeletonWrapper>
       </Grid>
       <Grid item xl xs={12}>
         <SkeletonWrapper
-          isLoading={constants.LOADING_STATUS.LOADING === status}
+          isLoading={constants.LOADING_STATUS.LOADING === callbackFnInfo.status}
         >
-          <StyledWeatherContent
-            component={Paper}
-            elevation={5}
-          ></StyledWeatherContent>
+          <StyledWeatherContent></StyledWeatherContent>
         </SkeletonWrapper>
       </Grid>
     </Grid>
@@ -42,7 +39,11 @@ const WeatherContent = ({ status }) => {
 };
 
 WeatherContent.propTypes = {
-  status: PropTypes.oneOf(Object.values(constants.LOADING_STATUS)),
+  callbackFnInfo: PropTypes.shape({
+    error: PropTypes.object,
+    response: PropTypes.object,
+    status: PropTypes.string,
+  }),
 };
 
 export { WeatherContent };

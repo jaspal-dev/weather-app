@@ -9,6 +9,7 @@ const useResponsive = () => {
   const aboveOrEqualLG = useMediaQuery(theme.breakpoints.up('lg'));
   const aboveOrEqualXL = useMediaQuery(theme.breakpoints.up('xl'));
 
+  const downMD = useMediaQuery(theme.breakpoints.down('md'));
   const downSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   return {
@@ -17,6 +18,7 @@ const useResponsive = () => {
     aboveOrEqualSM,
     aboveOrEqualXL,
     aboveOrEqualXS,
+    downMD,
     downSM,
   };
 };

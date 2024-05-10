@@ -35,6 +35,7 @@ export default [
         'error',
         {
           args: 'after-used',
+          argsIgnorePattern: '^_',
           caughtErrors: 'all',
           ignoreRestSiblings: false,
           vars: 'all',
@@ -90,6 +91,7 @@ export default [
             'bool',
             'axios',
             'func',
+            'feelslike',
           ],
           strings: true,
           templates: true,
