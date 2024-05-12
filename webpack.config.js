@@ -101,8 +101,8 @@ module.exports = (env) => {
       new webpack.ProvidePlugin({
         process: 'process/browser',
       }),
-      new ReactRefreshWebpackPlugin(),
-      isDevelopment && new webpack.EnvironmentPlugin(Object.keys(process.env)),
+      isDevelopment && new ReactRefreshWebpackPlugin(),
+      new webpack.EnvironmentPlugin(Object.keys(process.env)),
     ].filter(Boolean),
     resolve: {
       extensions: ['', '.js', '.jsx'],
