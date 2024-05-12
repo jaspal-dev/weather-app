@@ -1,21 +1,29 @@
 /* eslint-disable spellcheck/spell-checker */
+const ENV = {
+  development: 'development',
+  production: 'production',
+};
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = (env) => {
-  require('dotenv').config({ path: `./.env.${env.NODE_ENV}` });
+  const NODE_ENV = env.NODE_ENV;
+  const isDevelopment = NODE_ENV !== ENV.production;
+  require('dotenv').config({ path: `./.env.${NODE_ENV}` });
   return {
     devServer: {
       hot: true,
       port: 9000,
       static: {
-        directory: path.join(__dirname, 'public'),
+        directory: path.join(__dirname, 'dist'),
       },
     },
     entry: './src/index.js',
-    mode: 'none',
+    mode: isDevelopment ? ENV.development : ENV.production,
     module: {
       rules: [
         {
@@ -23,41 +31,57 @@ module.exports = (env) => {
           use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         {
-          exclude: /node_modules/,
-          resolve: {
-            extensions: ['', '.js', '.jsx'],
-          },
-          test: /\.(?:js|jsx|mjs|cjs)$/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              plugins: [
-                [
-                  '@emotion',
-                  {
-                    importMap: {
-                      '@mui/material/styles': {
-                        styled: {
-                          canonicalImport: ['@emotion/styled', 'default'],
-                          styledBaseImport: ['@mui/material/styles', 'styled'],
+          oneOf: [
+            {
+              exclude: [/node_modules/],
+              test: /\.(?:js|jsx|mjs|cjs)$/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  plugins: [
+                    [
+                      '@emotion',
+                      {
+                        importMap: {
+                          '@mui/material/styles': {
+                            styled: {
+                              canonicalImport: ['@emotion/styled', 'default'],
+                              styledBaseImport: [
+                                '@mui/material/styles',
+                                'styled',
+                              ],
+                            },
+                          },
+                          '@mui/system': {
+                            styled: {
+                              canonicalImport: ['@emotion/styled', 'default'],
+                              styledBaseImport: ['@mui/system', 'styled'],
+                            },
+                          },
                         },
                       },
-                      '@mui/system': {
-                        styled: {
-                          canonicalImport: ['@emotion/styled', 'default'],
-                          styledBaseImport: ['@mui/system', 'styled'],
-                        },
-                      },
-                    },
-                  },
-                ],
-              ],
-              presets: [
-                ['@babel/preset-env', { targets: 'defaults' }],
-                ['@babel/preset-react'],
-              ],
+                    ],
+                  ],
+                  presets: [
+                    ['@babel/preset-env', { targets: 'defaults' }],
+                    ['@babel/preset-react'],
+                  ],
+                },
+              },
             },
-          },
+            {
+              exclude: [/node_modules/],
+              test: /\.[jt]sx?$/,
+              use: {
+                loader: 'babel-loader',
+                options: {
+                  plugins: [isDevelopment && 'react-refresh/babel'].filter(
+                    Boolean
+                  ),
+                },
+              },
+            },
+          ],
         },
       ],
     },
@@ -77,7 +101,11 @@ module.exports = (env) => {
       new webpack.ProvidePlugin({
         process: 'process/browser',
       }),
-      new webpack.EnvironmentPlugin(Object.keys(process.env)),
-    ],
+      new ReactRefreshWebpackPlugin(),
+      isDevelopment && new webpack.EnvironmentPlugin(Object.keys(process.env)),
+    ].filter(Boolean),
+    resolve: {
+      extensions: ['', '.js', '.jsx'],
+    },
   };
 };
