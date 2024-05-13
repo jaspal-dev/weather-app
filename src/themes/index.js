@@ -1,11 +1,10 @@
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import React, { createContext, useState } from 'react';
+import React, { useState } from 'react';
 
 import { constants, keysConstants } from './../constants';
+import ThemeContext from './../contexts/ThemeContext';
 import { generateTheme } from './generateTheme';
-
-export const ThemeContext = createContext(null);
 
 const ThemeProvider = ({ children }) => {
   const previousSelectedMode = localStorage.getItem(keysConstants.mode);

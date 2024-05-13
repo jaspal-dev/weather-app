@@ -24,7 +24,7 @@ const WeatherContent = ({ callbackFnInfo }) => {
         <SkeletonWrapper
           isLoading={constants.LOADING_STATUS.LOADING === callbackFnInfo.status}
         >
-          <TodayForecasts />
+          <TodayForecasts response={callbackFnInfo.response} />
         </SkeletonWrapper>
       </Grid>
       <Grid item xl xs={12}>

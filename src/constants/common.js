@@ -27,3 +27,10 @@ export const WeatherAPI = {
 export const FULL_VIEWING_HEIGHT = '100vh';
 
 export const LAST_UPDATED_AT_MESSAGE = 'Updated';
+
+export const ZERO = '0';
+
+export const MERIDIEM = {
+  AM: 'AM',
+  PM: 'PM',
+};
