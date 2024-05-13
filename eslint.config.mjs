@@ -92,6 +92,7 @@ export default [
             'axios',
             'func',
             'feelslike',
+            'meridiem',
           ],
           strings: true,
           templates: true,

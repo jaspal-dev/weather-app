@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
 
 import { constants, keysConstants } from '../../../../constants';
-import { ThemeContext } from '../../../../themes';
+import ThemeContext from '../../../../contexts/ThemeContext';
 import { contents } from '../../contents';
 import { StyledSwitch } from './NavItems.styled';
 
