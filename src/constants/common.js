@@ -34,3 +34,8 @@ export const MERIDIEM = {
   AM: 'AM',
   PM: 'PM',
 };
+
+export const DAY = {
+  TODAY: 'TODAY',
+  TOMORROW: 'TOMORROW',
+};
