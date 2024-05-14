@@ -1,4 +1,4 @@
-import { MERIDIEM, ZERO } from './constants/index';
+import { DAY, MERIDIEM, ZERO } from './constants/index';
 
 export const cleanObject = (obj) => {
   return Object.entries(obj)
@@ -9,7 +9,7 @@ export const cleanObject = (obj) => {
     }, {});
 };
 
-function formatMeridian(date) {
+export const formatMeridian = (date) => {
   let hours = date.getHours();
   let minutes = date.getMinutes();
   const meridiem = hours >= 12 ? MERIDIEM.PM : MERIDIEM.AM;
@@ -23,14 +23,15 @@ function formatMeridian(date) {
     ' ' +
     meridiem
   );
-}
+};
 
-export const extractForecastTimings = (forecasts) => {
-  const currentEpochTime = Math.ceil(Date.now() / 1000);
-  const dayWeather = forecasts?.[0].hour ?? [];
-  const todayForecastsIndex = dayWeather.findIndex(
-    (hourWeather) => hourWeather?.time_epoch > currentEpochTime
-  );
+const extractForecastTimings = (forecasts, currentEpochTime) => {
+  const dayWeather = forecasts.hour ?? [];
+  const todayForecastsIndex = currentEpochTime
+    ? dayWeather.findIndex(
+        (hourWeather) => hourWeather?.time_epoch > currentEpochTime
+      )
+    : 0;
   return dayWeather
     .slice(todayForecastsIndex === -1 ? dayWeather.length : todayForecastsIndex)
     .map((forecast) => ({
@@ -39,4 +40,27 @@ export const extractForecastTimings = (forecasts) => {
       time: forecast?.time,
       timeMeridiem: formatMeridian(new Date(forecast?.time_epoch * 1000)),
     }));
+};
+
+const parseCurrentDay = (date, index) => {
+  switch (index) {
+    case 0:
+      return DAY.TODAY;
+    case 1:
+      return DAY.TOMORROW;
+    default:
+      return date.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$3-$2-$1');
+  }
+};
+
+export const getForecasts = (forecasts) => {
+  const currentEpochTime = Math.ceil(Date.now() / 1000);
+  return forecasts.reduce((forecast, currentForecast, index) => {
+    forecast[parseCurrentDay(currentForecast.date, index)] =
+      extractForecastTimings(
+        currentForecast,
+        index === 0 ? currentEpochTime : undefined
+      );
+    return forecast;
+  }, {});
 };
