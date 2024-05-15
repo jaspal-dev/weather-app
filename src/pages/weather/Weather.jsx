@@ -4,10 +4,13 @@ import React, { useEffect, useState } from 'react';
 import { useAsync, useResponsive } from '../../hooks/index';
 import { getWeatherInfo } from './../../api/weather/index';
 import { FULL_VIEWING_HEIGHT } from './../../constants';
+import { LocationParam } from './../../utils';
 import { StyledContainer, StyledPage } from './Weather.styled';
 import { HelperContent, MenuBar, WeatherContent } from './components/index';
 
 const Weather = () => {
+  const locationParam = new LocationParam();
+  const immediateInvoke = Boolean(locationParam.location);
   const [searchInfo, setSearchInfo] = useState({
     city: undefined,
     lastUpdatedAt: undefined,
@@ -15,9 +18,12 @@ const Weather = () => {
   const { downMD } = useResponsive();
   const { callbackFnInfo, invoke: invokeWeatherData } = useAsync(
     getWeatherInfo,
-    [],
+    [immediateInvoke],
     {
-      immediateInvoke: false,
+      immediateInvoke,
+      params: [immediateInvoke && { cityName: locationParam.location }].filter(
+        Boolean
+      ),
     }
   );
   useEffect(() => {
@@ -26,6 +32,9 @@ const Weather = () => {
         city: callbackFnInfo.response?.data.location.name,
         lastUpdatedAt: callbackFnInfo.response?.data?.current?.last_updated,
       });
+      if (callbackFnInfo.response?.data.location.name) {
+        locationParam.location = callbackFnInfo.response?.data.location.name;
+      }
     } else if (callbackFnInfo?.error) {
       setSearchInfo({});
     }
