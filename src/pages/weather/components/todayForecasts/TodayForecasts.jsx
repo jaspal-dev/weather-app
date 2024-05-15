@@ -31,6 +31,7 @@ const TodayForecasts = ({ response }) => {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList
+            allowScrollButtonsMobile
             onChange={handleChange}
             // eslint-disable-next-line spellcheck/spell-checker
             variant={'scrollable'}

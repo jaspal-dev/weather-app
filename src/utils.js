@@ -1,4 +1,4 @@
-import { DAY, MERIDIEM, ZERO } from './constants/index';
+import { DAY, LOCATION_PARAM, MERIDIEM, ZERO } from './constants/index';
 
 export const cleanObject = (obj) => {
   return Object.entries(obj)
@@ -68,7 +68,7 @@ export const getForecasts = (forecasts) => {
 export class LocationParam {
   get location() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('q');
+    return urlParams.get(LOCATION_PARAM);
   }
 
   set location(_location) {
@@ -79,7 +79,7 @@ export class LocationParam {
         window.location.host +
         // eslint-disable-next-line spellcheck/spell-checker
         window.location.pathname +
-        `?q=${_location.toLowerCase()}`;
+        `?${LOCATION_PARAM}=${_location.toLowerCase()}`;
       window.history.pushState({ path: url }, '', url);
     }
   }
