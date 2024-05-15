@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { getForecasts } from './../../../../utils';
-import { StyledWeatherContent } from './../../Weather.styled';
 import { constants } from './../../constants';
 import { StyledGridContent } from './todayForecasts.styled';
 
@@ -20,7 +19,7 @@ const TodayForecasts = ({ response }) => {
     setValue(newValue);
   };
   return (
-    <StyledWeatherContent>
+    <Stack>
       <Typography
         color={'primary'}
         marginY={3}
@@ -78,7 +77,7 @@ const TodayForecasts = ({ response }) => {
           </TabPanel>
         ))}
       </TabContext>
-    </StyledWeatherContent>
+    </Stack>
   );
 };
 
