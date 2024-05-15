@@ -39,3 +39,5 @@ export const DAY = {
   TODAY: 'TODAY',
   TOMORROW: 'TOMORROW',
 };
+
+export const LOCATION_PARAM = 'q';

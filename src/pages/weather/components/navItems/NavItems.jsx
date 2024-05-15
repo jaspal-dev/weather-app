@@ -14,11 +14,12 @@ import ThemeContext from '../../../../contexts/ThemeContext';
 import { contents } from '../../contents';
 import { StyledSwitch } from './NavItems.styled';
 
-const NavItems = ({ invokeWeatherData, status }) => {
+const NavItems = ({ invokeWeatherData, setSearchInfo, status }) => {
   const [cityName, setCityName] = useState('');
   const [mode, setMode] = useContext(ThemeContext);
   const fetchWeatherData = (event) => {
     event.preventDefault();
+    setSearchInfo({});
     invokeWeatherData({ cityName });
     setCityName('');
   };
@@ -82,6 +83,7 @@ const NavItems = ({ invokeWeatherData, status }) => {
 
 NavItems.propTypes = {
   invokeWeatherData: PropTypes.func,
+  setSearchInfo: PropTypes.func,
   status: PropTypes.string,
 };
 

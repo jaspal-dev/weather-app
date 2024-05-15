@@ -2,17 +2,14 @@ import { Box, Stack, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { useResponsive } from '../../../../hooks';
-
 const CurrentWeather = ({ response }) => {
   const currentTemperature = response?.data?.current?.feelslike_c;
   const weatherCondition = response?.data?.current?.condition;
-  const { downXL } = useResponsive();
   return (
     <Stack
       alignItems={'center'}
+      height={{ lg: 300, xl: 500 }}
       justifyContent={'center'}
-      minHeight={downXL ? 150 : 500}
     >
       <Box textAlign={'center'}>
         <img

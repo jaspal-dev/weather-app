@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useAsync, useResponsive } from '../../hooks/index';
 import { getWeatherInfo } from './../../api/weather/index';
@@ -9,7 +9,7 @@ import { StyledContainer, StyledPage } from './Weather.styled';
 import { HelperContent, MenuBar, WeatherContent } from './components/index';
 
 const Weather = () => {
-  const locationParam = new LocationParam();
+  const locationParam = useCallback(new LocationParam());
   const immediateInvoke = Boolean(locationParam.location);
   const [searchInfo, setSearchInfo] = useState({
     city: undefined,
@@ -48,6 +48,7 @@ const Weather = () => {
         <MenuBar
           invokeWeatherData={invokeWeatherData}
           searchInfo={searchInfo}
+          setSearchInfo={setSearchInfo}
           status={callbackFnInfo.status}
         />
         {searchInfo.city ? (
