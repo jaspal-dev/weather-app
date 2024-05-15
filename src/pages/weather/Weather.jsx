@@ -9,7 +9,7 @@ import { StyledContainer, StyledPage } from './Weather.styled';
 import { HelperContent, MenuBar, WeatherContent } from './components/index';
 
 const Weather = () => {
-  const locationParam = useCallback(new LocationParam());
+  const locationParam = useCallback(new LocationParam(), []);
   const immediateInvoke = Boolean(locationParam.location);
   const [searchInfo, setSearchInfo] = useState({
     city: undefined,
