@@ -4,9 +4,7 @@ import React from 'react';
 
 const SkeletonWrapper = ({ children, isLoading = false }) => {
   return isLoading ? (
-    <Skeleton variant={'rectangular'} width={'100%'}>
-      {children}
-    </Skeleton>
+    <Skeleton height={400} variant={'rectangular'} />
   ) : (
     children
   );

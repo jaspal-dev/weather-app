@@ -64,3 +64,23 @@ export const getForecasts = (forecasts) => {
     return forecast;
   }, {});
 };
+
+export class LocationParam {
+  get location() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('q');
+  }
+
+  set location(_location) {
+    if (history.pushState) {
+      const url =
+        window.location.protocol +
+        '//' +
+        window.location.host +
+        // eslint-disable-next-line spellcheck/spell-checker
+        window.location.pathname +
+        `?q=${_location.toLowerCase()}`;
+      window.history.pushState({ path: url }, '', url);
+    }
+  }
+}
