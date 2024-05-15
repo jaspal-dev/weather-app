@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import { styled } from '@mui/system';
 
 export const StyledContainer = styled(Box)`
@@ -26,8 +26,4 @@ export const StyledPage = styled(Box)`
   background-color: ${({ theme }) => theme.palette.casual.main};
   min-height: 100vh;
   padding: 0.05px;
-`;
-
-export const StyledWeatherContent = styled(Stack)`
-  min-height: 400px;
 `;
