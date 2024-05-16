@@ -24,9 +24,9 @@ const Weather = () => {
     [immediateInvoke],
     {
       immediateInvoke,
-      params: [
-        immediateInvoke ? { cityName: locationParam.location } : undefined,
-      ],
+      params: [immediateInvoke && { cityName: locationParam.location }].filter(
+        Boolean
+      ),
     }
   );
   useEffect(() => {
