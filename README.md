@@ -1,5 +1,8 @@
 # Weather App
 
+## Live Path
+`https://weather-app.projects.jaspal.dev`
+
 ## Description
 
 The Weather App is a comprehensive tool designed to provide detailed weather forecasts. It offers 10-day future forecasts with hourly updates, displays the current temperature, and provides hourly forecasts for the current day. The app features both day and night modes for user comfort.
