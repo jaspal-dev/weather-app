@@ -83,7 +83,7 @@ const TodayForecasts = ({ response }) => {
 };
 
 TodayForecasts.propTypes = {
-  response: PropTypes.object.isRequired,
+  response: PropTypes.object,
 };
 
 export { TodayForecasts };
