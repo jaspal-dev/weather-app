@@ -10,11 +10,14 @@ import { HelperContent, MenuBar, WeatherContent } from './components/index';
 
 const Weather = () => {
   const locationParam = useCallback(new LocationParam(), []);
-  const immediateInvoke = Boolean(locationParam.location);
   const [searchInfo, setSearchInfo] = useState({
     city: undefined,
     lastUpdatedAt: undefined,
   });
+  const immediateInvoke = Boolean(
+    locationParam.location &&
+      locationParam?.location?.toLowerCase() !== searchInfo?.city?.toLowerCase()
+  );
   const { downMD } = useResponsive();
   const { callbackFnInfo, invoke: invokeWeatherData } = useAsync(
     getWeatherInfo,
@@ -48,7 +51,6 @@ const Weather = () => {
         <MenuBar
           invokeWeatherData={invokeWeatherData}
           searchInfo={searchInfo}
-          setSearchInfo={setSearchInfo}
           status={callbackFnInfo.status}
         />
         {searchInfo.city ? (

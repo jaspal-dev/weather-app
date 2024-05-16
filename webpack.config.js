@@ -22,6 +22,7 @@ module.exports = (env) => {
         directory: path.join(__dirname, 'dist'),
       },
     },
+    devtool: 'source-map',
     entry: './src/index.js',
     mode: isDevelopment ? ENV.development : ENV.production,
     module: {
