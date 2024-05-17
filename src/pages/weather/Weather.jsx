@@ -3,17 +3,14 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { useAsync, useResponsive } from '../../hooks/index';
 import { getWeatherInfo } from './../../api/weather/index';
-import { FULL_VIEWING_HEIGHT } from './../../constants';
+import { FULL_VIEWING_HEIGHT, constants } from './../../constants';
 import { LocationParam } from './../../utils';
 import { StyledContainer, StyledPage } from './Weather.styled';
 import { HelperContent, MenuBar, WeatherContent } from './components/index';
 
 const Weather = () => {
   const locationParam = useCallback(new LocationParam(), []);
-  const [searchInfo, setSearchInfo] = useState({
-    city: undefined,
-    lastUpdatedAt: undefined,
-  });
+  const [searchInfo, setSearchInfo] = useState();
   const immediateInvoke = Boolean(
     locationParam.location &&
       locationParam?.location?.toLowerCase() !== searchInfo?.city?.toLowerCase()
@@ -31,9 +28,12 @@ const Weather = () => {
   );
   useEffect(() => {
     if (callbackFnInfo?.response) {
+      const updatedAt = new Date(
+        callbackFnInfo.response?.data?.current?.last_updated_epoch * 1000
+      );
       setSearchInfo({
         city: callbackFnInfo.response?.data.location.name,
-        lastUpdatedAt: callbackFnInfo.response?.data?.current?.last_updated,
+        lastUpdatedAt: updatedAt.toLocaleString(),
       });
       if (callbackFnInfo.response?.data.location.name) {
         locationParam.location = callbackFnInfo.response?.data.location.name;
@@ -53,7 +53,8 @@ const Weather = () => {
           searchInfo={searchInfo}
           status={callbackFnInfo.status}
         />
-        {searchInfo.city ? (
+        {searchInfo?.city ||
+        callbackFnInfo.status === constants.LOADING_STATUS.FINISHED ? (
           <WeatherContent callbackFnInfo={callbackFnInfo} />
         ) : (
           <HelperContent callbackFnInfo={callbackFnInfo} />

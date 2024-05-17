@@ -58,12 +58,12 @@ const TodayForecasts = ({ response }) => {
                   >
                     <Stack
                       alignItems={'center'}
-                      height={55}
+                      height={54}
                       justifyContent={'center'}
                       overflow={'hidden'}
                       width={'100%'}
                     >
-                      <img height={54} src={forecast?.icon ?? ''} />
+                      <img height={54} src={forecast?.icon} />
                     </Stack>
                     <Box>
                       <Typography variant={'h5'}>

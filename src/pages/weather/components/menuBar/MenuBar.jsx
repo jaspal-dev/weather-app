@@ -11,14 +11,14 @@ const MenuBar = ({ invokeWeatherData, searchInfo, status }) => {
     <Stack
       alignItems={'center'}
       direction={{ md: 'row', xs: 'column-reverse' }}
-      justifyContent={searchInfo.city ? 'space-between' : 'end'}
+      justifyContent={searchInfo?.city ? 'space-between' : 'end'}
       rowGap={2}
     >
-      {searchInfo.city && (
+      {searchInfo?.city && (
         <SearchReport
           isLoading={status === constants.LOADING_STATUS.LOADING}
           searchResponse={{
-            searchCity: searchInfo.city,
+            searchCity: searchInfo?.city,
             searchDate: searchInfo.lastUpdatedAt,
           }}
         />
