@@ -95,7 +95,7 @@ module.exports = (env) => {
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'src/index.ejs',
-        title: 'Webpack App',
+        title: 'Weather App',
       }),
       new MiniCssExtractPlugin(),
       // fix "process is not defined" error:

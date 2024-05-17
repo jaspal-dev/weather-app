@@ -13,6 +13,7 @@ const CurrentWeather = ({ response }) => {
     >
       <Box textAlign={'center'}>
         <img
+          height={128}
           src={
             weatherCondition
               ? weatherCondition?.icon?.replace('64x64', '128x128')
