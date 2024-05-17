@@ -1,7 +1,7 @@
 # Weather App
 
 ## Live Path
-`https://weather-app.projects.jaspal.dev`
+<a href="https://weather-app.projects.jaspal.dev">Weather App</a>
 
 ## Description
 
