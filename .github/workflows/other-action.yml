@@ -1,5 +1,7 @@
 name: Other Workflow (action)
-on: workflow_dispatch
+on:
+  - workflow_dispatch
+  - push
 
 jobs:
   verify-lint:
