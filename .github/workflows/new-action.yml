@@ -12,6 +12,6 @@ jobs:
         with:
           node-version: 20
       - run: |
-          npm intall --force
+          npm install --force
           npm run prettier
           npm run lint
