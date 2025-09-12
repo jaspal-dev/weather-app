@@ -1,0 +1,15 @@
+name: Pull request workflow
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Say hello for for Pull request'
+        uses: echo 'Congrulations! for pull request on main'
