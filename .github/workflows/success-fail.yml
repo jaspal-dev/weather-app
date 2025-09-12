@@ -12,8 +12,14 @@ jobs:
       - run: echo 'Success 1'
       - run: echo 'Success 2'
       - run: echo 'Success 3'
+      - if: success()
+        run: echo 'Test Aman 1'
       - run: exit 1
       - run: echo 'Success 4'
       - if: failure()
         run: echo 'Success 5'
+      - if: success()
+        run: echo 'Test Aman 2'
       - run: echo 'Success 6'
+      - if: success()
+        run: echo 'Test Aman 3'
