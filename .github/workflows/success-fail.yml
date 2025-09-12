@@ -18,6 +18,8 @@ jobs:
       - run: echo 'Success 4'
       - if: failure()
         run: echo 'Success 5'
+      - if: failure()
+        run: echo 'Success 6'
       - if: success()
         run: echo 'Test Aman 2'
       - run: echo 'Success 6'
