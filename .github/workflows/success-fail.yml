@@ -14,3 +14,6 @@ jobs:
       - run: echo 'Success 3'
       - run: exit 1
       - run: echo 'Success 4'
+      - if: failure()
+        run: echo 'Success 5'
+      - run: echo 'Success 6'
