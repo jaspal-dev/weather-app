@@ -1,0 +1,12 @@
+name: Multiple Events Trigger
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  say-hello-to-pull-push:
+    name: 'Say hello while pull and push'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Say hello while pull and push'
