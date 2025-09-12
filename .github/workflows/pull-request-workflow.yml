@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Say hello for for Pull request'
-        runs: echo 'Congrulations! for pull request on main'
+        run: echo 'Congrulations! for pull request on main'
