@@ -1,0 +1,16 @@
+name: Success Fail YML
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  test-success-fail:
+    name: 'Test success fail'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Success 1'
+      - run: echo 'Success 2'
+      - run: echo 'Success 3'
+      - run: exit 1
+      - run: echo 'Success 4'
